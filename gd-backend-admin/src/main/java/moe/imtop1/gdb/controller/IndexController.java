@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import moe.imtop1.gdb.service.SysUserService;
 import moe.imtop1.gdb.service.ValidateCodeService;
+import moe.imtop1.gdb.utils.AuthContextUtil;
 import moe.imtop1.model.dto.system.LoginDto;
 import moe.imtop1.model.entity.system.SysUser;
 import moe.imtop1.model.vo.common.Result;
@@ -39,16 +40,18 @@ public class IndexController {
         return Result.build(validateCodeVo, ResultCodeEnum.SUCCESS);
     }
 
-    //获取当前登录用户信息
+    @Operation(summary = "获取当前登录用户信息")
     @GetMapping(value = "/getUserInfo")
-    public Result getUserInfo(@RequestHeader(name = "token") String token) {
-        //1 从请求头获取token
-//        String token = request.getHeader("token");
-        //2 根据token查询redis获取用户信息
-        SysUser sysUser = sysUserService.getUserInfo(token);
+    public Result<SysUser> getUserInfo() {
+        return Result.build(AuthContextUtil.get()  , ResultCodeEnum.SUCCESS) ;
+    }
 
-        //3 用户信息返回
-        return Result.build(sysUser,ResultCodeEnum.SUCCESS);
+
+    @Operation(summary = "用户退出")
+    @GetMapping(value = "/logout")
+    public Result logout(@RequestHeader(name = "token") String token) {
+        sysUserService.logout(token);
+        return Result.build(null,ResultCodeEnum.SUCCESS);
     }
 
 }
