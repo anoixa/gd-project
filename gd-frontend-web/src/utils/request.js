@@ -45,7 +45,8 @@ service.interceptors.request.use(
   config => {
     const { authorization } = useApp()
     if (authorization) {
-      config.headers.Authorization = `Bearer ${authorization.token}`
+      //config.headers.Authorization = `Bearer ${authorization.token}`
+      config.headers.token = `${authorization.token}`
     }
     return config
   },
@@ -59,7 +60,13 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   // 响应成功进入第1个函数，该函数的参数是响应对象
   response => {
-    return response.data
+    const res = response.data
+    if (res.code == 401) {
+      const redirect = encodeURIComponent(window.location.href)  // 当前地址栏的url
+      router.push(`/login?redirect=${redirect}`)
+      return Promise.reject(new Error(res.message || 'Error'))
+    }
+    return res
   },
   // 响应失败进入第2个函数，该函数的参数是错误对象
   async error => {

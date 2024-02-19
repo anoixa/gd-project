@@ -23,7 +23,7 @@ export const Login = data => {
 // 获取登录用户信息
 export const GetUserinfo = () => {
   return request({
-    url: '/api/userinfo',
+    url: '/admin/system/index/getUserInfo',
     method: 'get',
   })
 }
@@ -33,5 +33,13 @@ export const GetValidateCode = () => {
   return request({
     url: "/admin/system/index/getValidateCode",
     method: 'get'
+  })
+}
+
+// 退出功能
+export const Logout = () => {
+  return request({
+    url: '/admin/system/index/logout',
+    method: 'get',
   })
 }

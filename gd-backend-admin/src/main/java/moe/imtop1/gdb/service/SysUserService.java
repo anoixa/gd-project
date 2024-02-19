@@ -8,4 +8,5 @@ import moe.imtop1.model.vo.system.LoginVo;
 public interface SysUserService extends IService<SysUser> {
     LoginVo login(LoginDto loginDto);
     SysUser getUserInfo(String token);
+    void logout(String token);
 }

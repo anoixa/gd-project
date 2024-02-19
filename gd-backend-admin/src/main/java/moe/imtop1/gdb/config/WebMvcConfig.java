@@ -1,8 +1,11 @@
 package moe.imtop1.gdb.config;
 
+import moe.imtop1.gdb.interceptor.LoginAuthInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -10,6 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Component
 public class WebMvcConfig implements WebMvcConfigurer {
+    @Autowired
+    private LoginAuthInterceptor loginAuthInterceptor;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // 添加路径规则
@@ -20,5 +26,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedOriginPatterns("*")
                 .allowedMethods("*")
                 .allowedHeaders("*") ;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginAuthInterceptor)
+                .excludePathPatterns("/admin/system/index/login", "/admin/system/index/getValidateCode")
+                .addPathPatterns("/**");
     }
 }
