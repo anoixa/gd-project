@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: gd-backend-service
+  profiles:
+    active: dev
+
