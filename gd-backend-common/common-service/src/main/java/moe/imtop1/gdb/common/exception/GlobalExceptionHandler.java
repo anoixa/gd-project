@@ -1,7 +1,7 @@
 package moe.imtop1.gdb.common.exception;
 
 import lombok.extern.slf4j.Slf4j;
-import moe.imtop1.gdb.model.vo.common.Result;
+import moe.imtop1.gdb.model.vo.common.AjaxResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Result error(Exception e){
+    public AjaxResult error(Exception e){
         log.error(e.getMessage());
-        return Result.build(500,"未知错误") ;
+        return AjaxResult.build(500,"未知错误") ;
     }
 
     //自定义异常处理
     @ExceptionHandler(SystemException.class)
     @ResponseBody
-    public Result error(SystemException e) {
-        return Result.build(e.getResultCodeEnum());
+    public AjaxResult error(SystemException e) {
+        return AjaxResult.build(e.getResultCodeEnum());
     }
 
 }

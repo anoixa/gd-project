@@ -8,7 +8,7 @@ import moe.imtop1.gdb.service.ValidateCodeService;
 import moe.imtop1.gdb.utils.AuthContextUtil;
 import moe.imtop1.gdb.model.dto.system.LoginDto;
 import moe.imtop1.gdb.model.entity.system.SysUser;
-import moe.imtop1.gdb.model.vo.common.Result;
+import moe.imtop1.gdb.model.vo.common.AjaxResult;
 import moe.imtop1.gdb.model.vo.common.ResultCodeEnum;
 import moe.imtop1.gdb.model.vo.system.LoginVo;
 import moe.imtop1.gdb.model.vo.system.ValidateCodeVo;
@@ -27,31 +27,31 @@ public class IndexController {
 
     @Operation(summary = "登录接口")
     @PostMapping(value = "/login")
-    public Result<LoginVo> login(@RequestBody LoginDto loginDto) {
+    public AjaxResult<LoginVo> login(@RequestBody LoginDto loginDto) {
         LoginVo loginVo = sysUserService.login(loginDto) ;
-        return Result.build(loginVo, ResultCodeEnum.SUCCESS) ;
+        return AjaxResult.build(loginVo, ResultCodeEnum.SUCCESS) ;
     }
 
     @Operation(summary = "生成图片验证码")
     @GetMapping(value = "/getValidateCode")
-    public Result<ValidateCodeVo> getValidateCode() {
+    public AjaxResult<ValidateCodeVo> getValidateCode() {
         ValidateCodeVo validateCodeVo = validateCodeService.getValidateCode();
 
-        return Result.build(validateCodeVo, ResultCodeEnum.SUCCESS);
+        return AjaxResult.build(validateCodeVo, ResultCodeEnum.SUCCESS);
     }
 
     @Operation(summary = "获取当前登录用户信息")
     @GetMapping(value = "/getUserInfo")
-    public Result<SysUser> getUserInfo() {
-        return Result.build(AuthContextUtil.get()  , ResultCodeEnum.SUCCESS) ;
+    public AjaxResult<SysUser> getUserInfo() {
+        return AjaxResult.build(AuthContextUtil.get()  , ResultCodeEnum.SUCCESS) ;
     }
 
 
     @Operation(summary = "用户退出")
     @GetMapping(value = "/logout")
-    public Result logout(@RequestHeader(name = "token") String token) {
+    public AjaxResult logout(@RequestHeader(name = "token") String token) {
         sysUserService.logout(token);
-        return Result.build(null,ResultCodeEnum.SUCCESS);
+        return AjaxResult.build(null,ResultCodeEnum.SUCCESS);
     }
 
 }

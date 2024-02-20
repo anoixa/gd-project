@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import moe.imtop1.gdb.utils.AuthContextUtil;
 import moe.imtop1.gdb.model.entity.system.SysUser;
-import moe.imtop1.gdb.model.vo.common.Result;
+import moe.imtop1.gdb.model.vo.common.AjaxResult;
 import moe.imtop1.gdb.model.vo.common.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -63,7 +63,7 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
 
     //响应401状态码给前端
     private void responseNoLoginInfo(HttpServletResponse response) {
-        Result<Object> result = Result.build(null, ResultCodeEnum.LOGIN_AUTH);
+        AjaxResult<Object> result = AjaxResult.build(null, ResultCodeEnum.LOGIN_AUTH);
         PrintWriter writer = null;
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
