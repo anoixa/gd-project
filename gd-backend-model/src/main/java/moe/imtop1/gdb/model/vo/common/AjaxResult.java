@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Schema(description = "响应结果实体类")
-public class Result<T> {
+public class AjaxResult<T> {
 
     //返回码
     @Schema(description = "业务状态码")
@@ -20,30 +20,30 @@ public class Result<T> {
     private T data;
 
     // 私有化构造
-    private Result() {}
+    private AjaxResult() {}
 
     // 返回数据
-    public static <T> Result<T> build(T body, Integer code, String message) {
-        Result<T> result = new Result<>();
+    public static <T> AjaxResult<T> build(T body, Integer code, String message) {
+        AjaxResult<T> result = new AjaxResult<>();
         result.setData(body);
         result.setCode(code);
         result.setMessage(message);
         return result;
     }
 
-    public static <T> Result<T> build(Integer code, String message) {
-        Result<T> result = new Result<>();
+    public static <T> AjaxResult<T> build(Integer code, String message) {
+        AjaxResult<T> result = new AjaxResult<>();
         result.setCode(code);
         result.setMessage(message);
         return result;
     }
 
     // 通过枚举构造Result对象
-    public static <T> Result build(T body , ResultCodeEnum resultCodeEnum) {
+    public static <T> AjaxResult build(T body , ResultCodeEnum resultCodeEnum) {
         return build(body , resultCodeEnum.getCode() , resultCodeEnum.getMessage()) ;
     }
 
-    public static <T> Result build(ResultCodeEnum resultCodeEnum) {
+    public static <T> AjaxResult build(ResultCodeEnum resultCodeEnum) {
         return build(resultCodeEnum.getCode() , resultCodeEnum.getMessage()) ;
     }
 
