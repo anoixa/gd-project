@@ -1,7 +1,7 @@
 package moe.imtop1.gdb.common.exception;
 
 import lombok.extern.slf4j.Slf4j;
-import moe.imtop1.model.vo.common.Result;
+import moe.imtop1.gdb.model.vo.common.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,6 +1,6 @@
 package moe.imtop1.gdb.service;
 
-import moe.imtop1.model.vo.system.ValidateCodeVo;
+import moe.imtop1.gdb.model.vo.system.ValidateCodeVo;
 
 /**
  * @author mahan

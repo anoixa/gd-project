@@ -6,12 +6,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import moe.imtop1.gdb.service.SysUserService;
 import moe.imtop1.gdb.service.ValidateCodeService;
 import moe.imtop1.gdb.utils.AuthContextUtil;
-import moe.imtop1.model.dto.system.LoginDto;
-import moe.imtop1.model.entity.system.SysUser;
-import moe.imtop1.model.vo.common.Result;
-import moe.imtop1.model.vo.common.ResultCodeEnum;
-import moe.imtop1.model.vo.system.LoginVo;
-import moe.imtop1.model.vo.system.ValidateCodeVo;
+import moe.imtop1.gdb.model.dto.system.LoginDto;
+import moe.imtop1.gdb.model.entity.system.SysUser;
+import moe.imtop1.gdb.model.vo.common.Result;
+import moe.imtop1.gdb.model.vo.common.ResultCodeEnum;
+import moe.imtop1.gdb.model.vo.system.LoginVo;
+import moe.imtop1.gdb.model.vo.system.ValidateCodeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
