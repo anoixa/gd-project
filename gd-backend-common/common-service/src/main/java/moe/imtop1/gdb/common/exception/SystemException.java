@@ -2,7 +2,7 @@ package moe.imtop1.gdb.common.exception;
 
 
 import lombok.Data;
-import moe.imtop1.model.vo.common.ResultCodeEnum;
+import moe.imtop1.gdb.model.vo.common.ResultCodeEnum;
 
 @Data
 public class SystemException extends RuntimeException{

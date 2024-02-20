@@ -3,9 +3,8 @@ package moe.imtop1.gdb.service.impl;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.CircleCaptcha;
 import moe.imtop1.gdb.service.ValidateCodeService;
-import moe.imtop1.model.vo.system.ValidateCodeVo;
+import moe.imtop1.gdb.model.vo.system.ValidateCodeVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 

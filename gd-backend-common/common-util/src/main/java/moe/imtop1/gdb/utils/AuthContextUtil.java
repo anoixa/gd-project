@@ -1,6 +1,6 @@
 package moe.imtop1.gdb.utils;
 
-import moe.imtop1.model.entity.system.SysUser;
+import moe.imtop1.gdb.model.entity.system.SysUser;
 
 /**
  * @author anoixa
