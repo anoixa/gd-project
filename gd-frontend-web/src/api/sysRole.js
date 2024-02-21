@@ -31,6 +31,8 @@ export const DeleteSysRole = queryDto => {
   return request({
     url: `${base_api}/deleteSysRole`,
     method: 'post',
-    data: queryDto,
+    data: {
+      id: queryDto.id
+    },
   })
 }

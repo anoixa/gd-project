@@ -1,10 +1,12 @@
 package moe.imtop1.gdb.model.entity.system;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.EqualsAndHashCode;
 import moe.imtop1.gdb.model.entity.base.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Schema(description = "系统用户实体类")
 @TableName(value = "sys_user")
