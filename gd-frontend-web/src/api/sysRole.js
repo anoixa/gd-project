@@ -10,3 +10,27 @@ export const GetSysRoleListByPage = queryDto => {
     data: queryDto,
   })
 }
+
+export const SaveSysRole = queryDto => {
+  return request({
+    url: `${base_api}/saveSysRole`,
+    method: 'post',
+    data: queryDto,
+  })
+}
+
+export const UpdateSysRole = queryDto => {
+  return request({
+    url: `${base_api}/updateSysRole`,
+    method: 'post',
+    data: queryDto,
+  })
+}
+
+export const DeleteSysRole = queryDto => {
+  return request({
+    url: `${base_api}/deleteSysRole`,
+    method: 'post',
+    data: queryDto,
+  })
+}
