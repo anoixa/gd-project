@@ -122,7 +122,7 @@ const submit = async () => {
 }
 
 const deleteOne = row => {
-  ElMessageBox.confirm('此操作将永久删除该记录, 是否继续?', 'Warning', {
+  ElMessageBox.confirm('此操作将永久删除该记录, 是否继续?', '警告', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning',

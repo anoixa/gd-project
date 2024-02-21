@@ -3,9 +3,13 @@ package moe.imtop1.gdb.service.impl;
 import cn.hutool.core.lang.UUID;
 import com.alibaba.fastjson2.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import moe.imtop1.gdb.common.exception.SystemException;
 import moe.imtop1.gdb.mapper.SysUserMapper;
+import moe.imtop1.gdb.model.dto.system.SysUserDto;
+import moe.imtop1.gdb.model.entity.system.SysRole;
 import moe.imtop1.gdb.service.SysUserService;
 import moe.imtop1.gdb.model.dto.system.LoginDto;
 import moe.imtop1.gdb.model.entity.system.SysUser;
@@ -80,13 +84,26 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public SysUser getUserInfo(String token) {
         String redisCode = redisTemplate.opsForValue().get("user:login:" + token);
-        SysUser sysUser = JSON.parseObject(redisCode, SysUser.class);
 
-        return sysUser;
+        return JSON.parseObject(redisCode, SysUser.class);
     }
 
     @Override
     public void logout(String token) {
         redisTemplate.delete("user:login" + token);
+    }
+
+    @Override
+    public IPage<SysUser> findByPage(SysUserDto sysUserDto) {
+        Page<SysUser> pageInfo = new Page<>(sysUserDto.getPageNum(), sysUserDto.getPageSize());
+
+        LambdaQueryWrapper<SysUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.like(SysUser::getUserName, sysUserDto.getKeyword())
+                .ge(SysUser::getCreateTime, sysUserDto.getCreateTimeBegin())
+                .le(SysUser::getCreateTime, sysUserDto.getCreateTimeEnd())
+                .eq(SysUser::getIsDeleted, 0)
+                .orderByAsc(SysUser::getUserName);
+
+        return sysUserMapper.selectPage(pageInfo, lambdaQueryWrapper);
     }
 }
