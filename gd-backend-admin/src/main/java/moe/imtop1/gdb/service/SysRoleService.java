@@ -10,4 +10,7 @@ import moe.imtop1.gdb.model.entity.system.SysRole;
  */
 public interface SysRoleService {
     IPage<SysRole> findByPage(SysRoleDto sysRoleDto);
+    void saveSysRole(SysRoleDto sysRoleDto);
+    void updateSysRole(SysRoleDto sysRoleDto);
+    void deleteSysRole(SysRoleDto sysRoleDto);
 }

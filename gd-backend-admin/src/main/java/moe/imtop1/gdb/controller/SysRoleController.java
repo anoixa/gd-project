@@ -29,4 +29,25 @@ public class SysRoleController {
         return AjaxResult.build(byPage , ResultCodeEnum.SUCCESS) ;
     }
 
+    @Operation(summary = "添加角色接口")
+    @PostMapping(value = "/saveSysRole")
+    public AjaxResult saveSysRole(@RequestBody SysRoleDto sysRoleDto) {
+        sysRoleService.saveSysRole(sysRoleDto);
+        return AjaxResult.build(ResultCodeEnum.SUCCESS);
+    }
+
+    @Operation(summary = "更新角色接口")
+    @PostMapping(value = "/updateSysRole")
+    public AjaxResult updateSysRole(@RequestBody SysRoleDto sysRoleDto) {
+        sysRoleService.updateSysRole(sysRoleDto);
+        return AjaxResult.build(ResultCodeEnum.SUCCESS);
+    }
+
+    @Operation(summary = "删除角色接口")
+    @PostMapping(value = "/deleteSysRole")
+    public AjaxResult deleteSysRole(@RequestBody SysRoleDto sysRoleDto) {
+        sysRoleService.deleteSysRole(sysRoleDto);
+        return AjaxResult.build(ResultCodeEnum.SUCCESS);
+    }
+
 }
