@@ -13,6 +13,9 @@ import java.util.Date;
 
 import static com.baomidou.mybatisplus.annotation.IdType.ASSIGN_UUID;
 
+/**
+ * @author anoixa
+ */
 @Data
 public class BaseEntity implements Serializable {
 
