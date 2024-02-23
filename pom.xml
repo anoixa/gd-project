@@ -19,7 +19,6 @@
     <modules>
         <module>gd-backend-admin</module>
         <module>gd-backend-model</module>
-        <module>gd-backend-common</module>
         <module>gd-backend-common/common-service</module>
         <module>gd-backend-common/common-util</module>
     </modules>
@@ -117,36 +116,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <!-- To define the plugin version in your parent POM -->
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>3.3.1</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>2.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
-        <!-- To use the plugin goals in your POM or parent POM -->
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>
