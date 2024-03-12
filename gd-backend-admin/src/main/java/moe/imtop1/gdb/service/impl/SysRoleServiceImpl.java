@@ -14,6 +14,7 @@ import moe.imtop1.gdb.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 /**
  * @author anoixa
@@ -28,7 +29,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         Page<SysRole> pageInfo = new Page<>(sysRoleDto.getPageNum(), sysRoleDto.getPageSize());
 
         LambdaQueryWrapper<SysRole> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.like(SysRole::getRoleName, sysRoleDto.getRoleName())
+        lambdaQueryWrapper.like(!StringUtils.hasLength(sysRoleDto.getRoleName()), SysRole::getRoleName, sysRoleDto.getRoleName())
                 .eq(SysRole::getIsDeleted, 0)
                 .orderByAsc(SysRole::getRoleName);
 
@@ -53,9 +54,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     public void updateSysRole(SysRoleDto sysRoleDto) {
         LambdaUpdateWrapper<SysRole> lambdaUpdateWrapper = new LambdaUpdateWrapper<>();
         lambdaUpdateWrapper.eq(SysRole::getId, sysRoleDto.getId())
-                .set(SysRole::getRoleName, sysRoleDto.getRoleName())
-                .set(SysRole::getRoleCode, sysRoleDto.getRoleCode())
-                .set(SysRole::getDescription, sysRoleDto.getDescription());
+                .set(!StringUtils.hasLength(sysRoleDto.getRoleName()), SysRole::getRoleName, sysRoleDto.getRoleName())
+                .set(!StringUtils.hasLength(sysRoleDto.getRoleCode()), SysRole::getRoleCode, sysRoleDto.getRoleCode())
+                .set(!StringUtils.hasLength(sysRoleDto.getDescription()), SysRole::getDescription, sysRoleDto.getDescription());
 
         sysRoleMapper.update(lambdaUpdateWrapper);
     }
