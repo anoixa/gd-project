@@ -38,7 +38,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public LoginVo login(LoginDto loginDto) {
         // 根据用户名查询用户
         LambdaQueryWrapper<SysUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(SysUser::getUserName, loginDto.getUserName());
+        lambdaQueryWrapper.eq(!StringUtils.hasText(loginDto.getUserName()), SysUser::getUserName, loginDto.getUserName());
         SysUser sysUser = sysUserMapper.selectOne(lambdaQueryWrapper);
         if(sysUser == null) {
             throw new SystemException(ResultCodeEnum.LOGIN_ERROR);
